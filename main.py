@@ -1,19 +1,28 @@
+    
+import random
 import streamlit as st
 
-st.title("Calculator")
+st.title("Rock Paper Scissors")
 
-a = st.number_input("Enter first number")
-b = st.number_input("Enter second number")
-c = st.selectbox("Pick operation", ["+", "-", "*", "/"])
+a = random.randint(1, 3)
 
-if st.button("Calculate"):
-    if c == "+":
-        d = a + b
-    elif c == "-":
-        d = a - b
-    elif c == "*":
-        d = a * b
-    elif c == "/":
-        d = a / b
+b = st.selectbox("Choose your move", ["Rock", "Paper", "Scissors"])
+
+if st.button("GO"):
+    if a == 1:
+        computer = "Rock"
+    elif a == 2:
+        computer = "Paper"
+    else:
+        computer = "Scissors"
     
-    st.write(f"Result: {d}")
+    st.write(f"Computer chose: {computer}")
+
+    if b == computer:
+        st.write("Tie!")
+    elif (b == "Rock" and computer == "Scissors") or \
+         (b == "Paper" and computer == "Rock") or \
+         (b == "Scissors" and computer == "Paper"):
+        st.write("You win!")
+    else:
+        st.write("You lose!")
